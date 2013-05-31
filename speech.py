@@ -17,4 +17,4 @@ def say(text):
 def clean(text):
     # Remove URLs and apostraphes used in contractions
     text.replace('\'', '')
-    return re.sub(r'http:\/\/\S*\s*', '', text)
+    return re.sub(r'https?:\/\/\S*\s*', '', text)
