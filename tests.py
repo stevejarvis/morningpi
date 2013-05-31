@@ -12,6 +12,12 @@ class EnvironmentTests(unittest.TestCase):
         version = sys.version_info.major
         self.assertTrue(version >= 3, 'Make sure you run with Python 3!')
 
+    def testMplayerExists(self):
+        import os
+        with open(os.devnull, 'w') as null:
+            out = call(['which', 'mplayer'], stdout=null)
+        self.assertEqual(out, 0, 'Mplayer is needed for speech.')
+
 
 class TwitterTests(unittest.TestCase):
 
@@ -39,6 +45,12 @@ class TwitterTests(unittest.TestCase):
     def testNoName(self):
         t = tweets.get_tweets()
         self.assertTrue(t[0] == -1)
+
+
+class SayTests(unittest.TestCase):
+
+    def testSayIsFound(self):
+        from speech import say
 
 
 if __name__ == '__main__':
