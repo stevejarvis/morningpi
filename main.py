@@ -10,9 +10,7 @@ def tweets(username, count=2):
 
 
 if __name__ == '__main__':
-    jen_tweets = tweets('JennyJarv', 2)
-    al_tweets = tweets('allieehenry', 2)
-    steve_tweets = tweets('stevenjarvis', 2)
-    read_tweets('Jen', jen_tweets)
-    read_tweets('Al', al_tweets)
-    read_tweets('Steve', steve_tweets)
+    handles = ['JennyJarv', 'Chris_Lenahen', 'allieehenry', 'stevenjarvis']
+    for user in handles:
+        t = tweets(user)
+        read_tweets(user, t)
