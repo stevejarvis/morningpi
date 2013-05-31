@@ -57,6 +57,13 @@ class SayTests(unittest.TestCase):
         s = 'this is a tweet http://twitpic.com/whtever #hash tweet'
         processed = speech.clean(s)
         self.assertEqual(processed, 'this is a tweet #hash tweet')
+        s = 'this is a tweet http://twitpic.com/whtever'
+        processed = speech.clean(s)
+        self.assertEqual(processed, 'this is a tweet ')
+        s = 'http://twitpic.com/whtever more #taga'
+        processed = speech.clean(s)
+        self.assertEqual(processed, 'more #taga')
+
 
 
 if __name__ == '__main__':
