@@ -2,6 +2,7 @@ import unittest
 import tweets
 import sys
 from subprocess import call
+import speech
 
 def halt():
     import pdb; pdb.set_trace()
@@ -51,6 +52,11 @@ class SayTests(unittest.TestCase):
 
     def testSayIsFound(self):
         from speech import say
+
+    def testRemoveUrls(self):
+        s = 'this is a tweet http://twitpic.com/whtever #hash tweet'
+        processed = speech.clean(s)
+        self.assertEqual(processed, 'this is a tweet #hash tweet')
 
 
 if __name__ == '__main__':
