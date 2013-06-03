@@ -17,3 +17,11 @@ Installation (on Raspian)
 `$ python3 tests.py`
 * If they pass, you should be set! See if it talks:
 `$ python3 main.py`
+* Change preferences in settings.txt to make it say things you like
+
+More Info
+---------
+
+For more info about the tools used in this app.
+[Twitter API](https://dev.twitter.com/docs/api/1/get/statuses/user_timeline)
+[Open Weather API](http://openweathermap.org/API#weather)
