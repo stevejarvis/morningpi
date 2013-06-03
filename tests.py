@@ -64,6 +64,44 @@ class SayTests(unittest.TestCase):
         processed = speech.clean(s)
         self.assertEqual(processed, 'more #taga')
 
+class SettingsTests(unittest.TestCase):
+
+    def setUp(self):
+        with open('testsettings', 'w') as fh:
+            print('name = steve', file=fh)
+            print('tweets = stevenjarvis|allieehenry', file=fh)
+            print('# this is a comment', file=fh)
+            print('tweet_no_space=stevenjarvis|allieehenry', file=fh)
+            print('tweet_lots_space =  stevenjarvis  | allieehenry', file=fh)
+            print('city = marquette,mi', file=fh)
+
+    def tearDown(self):
+        import os
+        os.remove('testsettings')
+
+    def testGetName(self):
+        import settings
+        settings.initialize('testsettings')
+        self.assertEqual(settings.get_preference('name'), 'steve')
+
+    def testIgnoreComments(self):
+        import settings
+        settings.initialize('testsettings')
+        self.assertEqual(len(settings.prefs), 5)
+
+    def testListPref(self):
+        import settings
+        settings.initialize('testsettings')
+        handles = settings.get_preference('tweets')
+        desired = ['stevenjarvis', 'allieehenry']
+        self.assertEqual(handles, desired)
+
+    def testLotsOfSpaces(self):
+        import settings
+        settings.initialize('testsettings')
+        handles = settings.get_preference('tweet_lots_space')
+        desired = ['stevenjarvis', 'allieehenry']
+        self.assertEqual(handles, desired)
 
 
 if __name__ == '__main__':

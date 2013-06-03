@@ -1,0 +1,8 @@
+# Set your preferences here. Lines beginning with a '#' will be
+# ignored.
+
+# Set city,state or city,country for weater. Seems fairly flexible.
+location = marquette,mi
+
+# Pipe-separated list of whose tweets to read.
+tweets = JennyJarv|Chris_Lenahen
