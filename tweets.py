@@ -12,21 +12,21 @@ def parse(response):
     return tweets
 
 def get_tweets(name=None, count=2):
-    # Return tuple of (http status, list of tweets)
-    if name == None:
-        return (-1, [])
+    if name is None:
+        return None
     request_url = ('https://api.twitter.com/1/statuses/user_timeline.json?'
                    'include_entities=true'
                    '&include_rts=true'
                    '&screen_name=%s'
                    '&count=%d' %(name, count))
+    import pdb; pdb.set_trace()
     with urllib.request.urlopen(request_url) as t:
         status = t.status
         if status == 200:
             result = t.readall().decode('utf-8')
-            tweets = parse(result)
-            return (t.status, tweets)
-    return (status, [])
+            return parse(result)
+        else:
+            raise Error('Bad request getting tweets.')
 
 
 if __name__ == '__main__':
