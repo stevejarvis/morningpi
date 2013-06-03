@@ -32,20 +32,17 @@ class TwitterTests(unittest.TestCase):
         self.assertTrue(True)
 
     def testGetAnythingFromTwitter(self):
-        t = tweets.get_tweets(name='allieehenry')
-        alstweets = t[1]
-        ret_status = t[0]
-        self.assertEqual(ret_status, 200)
+        alstweets = tweets.get_tweets(name='allieehenry')
         self.assertTrue(len(alstweets) >= 1)
 
     def testNumberRequest(self):
         from tweets import get_tweets
         t = get_tweets(name='JennyJarv', count=7)
-        self.assertTrue(len(t[1]) == 7)
+        self.assertTrue(len(t) == 7)
 
     def testNoName(self):
         t = tweets.get_tweets()
-        self.assertTrue(t[0] == -1)
+        self.assertTrue(t is None)
 
 
 class SayTests(unittest.TestCase):
@@ -102,6 +99,15 @@ class SettingsTests(unittest.TestCase):
         handles = settings.get_preference('tweet_lots_space')
         desired = ['stevenjarvis', 'allieehenry']
         self.assertEqual(handles, desired)
+
+class WeatherTests(unittest.TestCase):
+
+    def testGetSomeInfo(self):
+        import weather
+        w = weather.get_weather('marquette,mi')
+        desc = w['comment']
+        self.assertTrue(type(desc) == str)
+        self.assertTrue(type(w['max']) == int)
 
 
 if __name__ == '__main__':
