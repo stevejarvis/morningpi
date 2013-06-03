@@ -19,7 +19,6 @@ def get_tweets(name=None, count=2):
                    '&include_rts=true'
                    '&screen_name=%s'
                    '&count=%d' %(name, count))
-    import pdb; pdb.set_trace()
     with urllib.request.urlopen(request_url) as t:
         status = t.status
         if status == 200:

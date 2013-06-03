@@ -16,7 +16,7 @@ def read_weather():
         %(w['temp'], w['max'] - w['temp']))
 
 def tweets(username, count=2):
-    return get_tweets(username, count)[1]
+    return get_tweets(username, count)
 
 
 if __name__ == '__main__':
